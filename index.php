@@ -100,7 +100,7 @@ else {
 
     // 1. ФИО
     $fullname = isset($_POST['fullname']) ? trim($_POST['fullname']) : '';
-    if (empty($fullname) || mb_strlen($fullname) > 150 || !preg_match('/^[A-Za-zА-Яа-яЁё\s]+$/u', $fullname)) {
+    if (empty($fullname) || !preg_match('/^.{1,150}$/u', $fullname) || !preg_match('/^[A-Za-zА-Яа-яЁё\s]+$/u', $fullname)) {
         setcookie('fullname_error', '1', 0);
         setcookie('fullname_value', $fullname, 0);
         $errors = TRUE;
@@ -186,7 +186,7 @@ else {
 
     // 7. Биография
     $bio = isset($_POST['bio']) ? trim($_POST['bio']) : '';
-    if ((!empty($bio) && !preg_match('/^[A-Za-zА-Яа-яЁё0-9\s.,!?\-—()]+$/u', $bio)) || mb_strlen($bio) > 1000) {
+    if ((!empty($bio) && !preg_match('/^[A-Za-zА-Яа-яЁё0-9\s.,!?\-—()]+$/u', $bio)) || !preg_match('/^.{0,1000}$/u', $bio)) {
         setcookie('bio_error', '1', 0);
         setcookie('bio_value', $bio, 0);
         $errors = TRUE;
